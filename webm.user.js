@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Safari Embedded WebM Support
-// @namespace    http://tampermonkey.net/
+// @namespace    safari-embedded-webm-support
 // @version      1.0
 // @description  Uses the VLC webplugin to play embeded webM videos.
 // @author       b50
@@ -9,6 +9,8 @@
 // @grant        none
 // @require      http://code.jquery.com/jquery-3.2.1.min.js
 // @require      https://raw.githubusercontent.com/uzairfarooq/arrive/master/minified/arrive.min.js
+// @updateURL    https://github.com/b50/safari-embedded-webm-support/raw/master/webm.user.js
+// @downloadURL  https://github.com/b50/safari-embedded-webm-support/raw/master/webm.user.js
 // ==/UserScript==
 
 (function() {
