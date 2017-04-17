@@ -1,9 +1,9 @@
+![4chan Screenshot](/images/screenshot.png?raw=true')
+
 # Safari Embedded WebM Support
 Gets embedded WebM videos to play in Safari on supported imageboards.
 
-Currently supports: 4chan and 8chan.
-
-![4chan Screenshot](/images/screenshot.png?raw=true')
+Currently supports 4chan and 8chan.
 
 ## How to install
 This script requires two more safari extensions to run. 
