@@ -3,7 +3,7 @@
 // @namespace    safari-embedded-webm-support
 // @version      1.0
 // @description  Uses the VLC webplugin to play embeded webM videos.
-// @author       b50
+// @author       C9HDN
 // @match        http://boards.4chan.org/*
 // @match        https://8ch.net/*
 // @grant        none
