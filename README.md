@@ -1,7 +1,7 @@
 ![4chan Screenshot](/images/screenshot.png?raw=true')
 
 # Safari Embedded WebM Support
-Plays embedded WebM videos playing in Safari on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
+Plays embedded WebM videos on Safari on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
 
 ## Setup
 1. Install [Tampermonkey](https://tampermonkey.net/?browser=safari)
