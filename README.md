@@ -1,4 +1,4 @@
-![4chan Screenshot](/images/screenshot.png?raw=true')
+![4chan Screenshot](https://raw.githubusercontent.com/calumks/safari-embedded-webm-support/master/images/screenshot.png)
 
 # Safari Embedded WebM Support
 Plays embedded WebM videos on Safari on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
