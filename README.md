@@ -1,7 +1,7 @@
 ![4chan Screenshot](https://raw.githubusercontent.com/calumks/safari-embedded-webm-support/master/images/screenshot.png)
 
 # Safari Embedded WebM Support
-Lets safari to play embedded WebM videos on Safari on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
+Lets safari play embedded WebM videos on Safari on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
 
 ## Setup
 1. Install [VLC-webplugin-2.2.8](http://download.videolan.org/pub/videolan/vlc/2.2.8/macosx/VLC-webplugin-2.2.8.dmg).
