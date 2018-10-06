@@ -1,4 +1,4 @@
-    // ==UserScript==
+// ==UserScript==
 // @name         Safari Embedded WebM Support
 // @namespace    safari-embedded-webm-support
 // @version      1.2
