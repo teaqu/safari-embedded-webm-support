@@ -2,7 +2,7 @@
 // @name         Safari Embedded WebM Support
 // @namespace    safari-embedded-webm-support
 // @version      1.2
-// @description  Uses the VLC webplugin to play embeded webM videos.
+// @description  Lets Safari play embedded WebM videos on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
 // @author       Calumks
 // @grant        none
 // @run-at       document-end

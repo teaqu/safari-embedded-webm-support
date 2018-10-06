@@ -1,6 +1,6 @@
+# Safari Embedded WebM Support
 ![Screenshot](https://raw.githubusercontent.com/calumks/safari-embedded-webm-support/master/screenshot.png)
 
-# Safari Embedded WebM Support
 Lets Safari play embedded WebM videos on supported imageboards: 4chan, 8chan, Gelbooru and Danbooru.
 
 ## Setup
