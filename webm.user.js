@@ -1,88 +1,77 @@
-// ==UserScript==
+    // ==UserScript==
 // @name         Safari Embedded WebM Support
 // @namespace    safari-embedded-webm-support
-// @version      1.1
+// @version      1.2
 // @description  Uses the VLC webplugin to play embeded webM videos.
 // @author       Calumks
+// @grant        none
+// @run-at       document-end
 // @match        *://boards.4chan.org/*
 // @match        *://8ch.net/*
 // @match        *://gelbooru.com/index.php?page=post&*
 // @match        *://danbooru.donmai.us/posts/*
-// @grant        none
-// @require      http://code.jquery.com/jquery-3.2.1.min.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/arrive/2.4.1/arrive.min.js
-// @downloadURL  https://github.com/calumks/safari-embedded-webm-support/raw/master/webm.user.js
+// @downloadURL  https://git.io/fx3Gl
 // ==/UserScript==
 
 (function() {
+    'use strict';
 
-    function embedVLC(video, src) {
-        // 4chan
-        if (document.URL.indexOf("//boards.4chan") > -1) {
-            insert4chan(video, src);
-        // Other
-        } else {
-             // Create video
-             var vlc = createVLC(video, src);
-             video.before(vlc);
-
-             // Hide video
-             video.attr('style', 'width: 0; opacity: 0; height: 0;');
+    // Create the VLC video player
+    function createVLC(video) {
+        let vlc = document.createElement('embed');
+        vlc.setAttribute('autoplay', true);
+        vlc.setAttribute('loop', true);
+        vlc.setAttribute('class', video.getAttribute('class'));
+        vlc.setAttribute('type', 'application/x-vlc-plugin');
+        vlc.setAttribute('pluginspage', 'http://www.videolan.org');
+        vlc.setAttribute('width', 855);
+        vlc.setAttribute('height', 481);
+        vlc.setAttribute(
+            'target', video.src || video.querySelector('source').src
+        );
+        video.after(vlc);
+        video.setAttribute(
+            'style', 'opacity: 0; height: 0; width: 0; display: none'
+        );
+        if (document.querySelector('a[title^="4chan X"]')) {
+            let thumbnail = video.parentNode.querySelector('img');
+            thumbnail.setAttribute('style', 'display: none');
+            video.removeAttribute('src');
         }
-    }
-
-    // Create vlc video to insert
-    function createVLC(video, src) {
-        // Get source
-        var vlc = $('<embed loop="' + video.prop("loop") + '">');
-        vlc.attr({
-            type: "application/x-vlc-plugin",
-            pluginspage: "http://www.videolan.org",
-            width: "855",
-            height: "481",
-            target: src,
-        });
         return vlc;
     }
 
-    // 4chan insert
-    function insert4chan(video, src) {
-
-        // Add vlc
-        var vlc = createVLC(video, src);
-        video.parent().before(vlc);
-        vlc.attr("style", "margin: 5px 20px");
-
-        // Hide thumb
-        var thumb = video.parent().find('img');
-        thumb.hide();
-
-        // click to stop loading again
-        thumb.click();
-
-        // Create close button
-        var closeSpan = $("<span class='collapseWebm'>-[<a>close</a>]</span>");
-        var closeLink = $("a", closeSpan) ;
-        vlc.prev().append(closeSpan);
-        closeLink.click(function() {
-            closeSpan.remove();
-            vlc.remove();
-            thumb.show();
-        });
+    // Destroy the VLC player
+    function destroyVLC(video, embed) {
+        if (document.querySelector('a[title^="4chan X"]')) {
+            let thumbnail = embed.parentNode.querySelector('img');
+            thumbnail.removeAttribute('style');
+            video.src = embed.target;
+        }
+        embed.remove();
     }
 
-    // Convert html5
-    $(document).arrive('video[src$=".webm"]', function() {
-        embedVLC($(this), $(this).attr("src"));
-    });
-    $('video[src$=".webm"]').each(function() {
-        embedVLC($(this), $(this).attr("src"));
-    });
-     $(document).arrive('video source[src$=".webm"]', function() {
-        embedVLC($(this).closest('video'), $(this).attr("src"));
-    });
-    $('video source[src$=".webm"]', $(this).src).each(function() {
-        embedVLC($(this).closest('video'), $(this).attr("src"));
-    });
+    // Filter observer nodes to video elements.
+    function filterNodes(nodes) {
+        nodes = Array.from(nodes);
+        let n1 = nodes.filter(n => n instanceof HTMLVideoElement);
+        let n2 = nodes
+            .filter(n => n instanceof HTMLElement)
+            .map(n => n.querySelector('video'))
+            .filter(n => n);
+        return n1.concat(n2);
+    }
 
-})(this);
+    // Dynamic videos
+    new MutationObserver(mutations => {
+        for(let mutation of mutations) {
+            filterNodes(mutation.addedNodes).map(n => createVLC(n));
+            filterNodes(mutation.removedNodes).map(n =>
+                destroyVLC(n, mutation.target.querySelector('embed')));
+        }
+    }).observe(document, {attributes: false, childList: true, subtree: true});
+
+    // On page load
+    let video = document.querySelector('video');
+    ! video || createVLC(video);
+})();
