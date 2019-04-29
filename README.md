@@ -1,7 +1,8 @@
 # Safari Embedded WebM Support
 
-**Unfortunatley Apple removed support for Safari Internet plug-ins so this no longer works.  
-https://support.apple.com/en-gb/HT202819**
+**Unfortunatley Apple removed support for Safari Internet plug-ins so this no longer works.**
+>Safari no longer supports most plug-ins. To load webpages more quickly, save energy, and strengthen security, Safari is optimized for content that uses the HTML5 web standard, which doesn't require a plug-in. To enhance and customize your browsing experience, you can use Safari Extensions instead.  
+https://support.apple.com/en-gb/HT202819
 
 ![Screenshot](https://raw.githubusercontent.com/calumks/safari-embedded-webm-support/master/screenshot.png)
 
